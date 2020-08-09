@@ -30,7 +30,7 @@ function LaunchCard(props) {
               </div>
               <div>
                 <span className="launch-title">Successful Landing:</span>
-                <span className="launch-title-right">{details.land_success !== undefined && `${details.land_success}` }</span>
+                <span className="launch-title-right">{details.launch_landing !== undefined && `${details.launch_landing}` }</span>
               </div>
             </div>
             </div>
