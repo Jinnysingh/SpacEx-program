@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SuccessLaing /> testing the filters 1`] = `
+<SuccessLaing
+  launchFilters={
+    Array [
+      "true",
+      "false",
+    ]
+  }
+>
+  <div
+    className="launch-sec"
+  >
+    <div>
+      <u>
+        Successful Laing
+      </u>
+    </div>
+    <button
+      className="btn btn-success text-dark launch-btn active-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      true
+    </button>
+    <button
+      className="btn btn-success text-dark launch-btn active-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      false
+    </button>
+  </div>
+</SuccessLaing>
+`;
+
+exports[`<launchYears /> testing the filters 1`] = `
+<SuccessLaing
+  launchFilters={
+    Array [
+      "true",
+      "false",
+    ]
+  }
+>
+  <div
+    className="launch-sec"
+  >
+    <div>
+      <u>
+        Successful Laing
+      </u>
+    </div>
+    <button
+      className="btn btn-success text-dark launch-btn active-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      true
+    </button>
+    <button
+      className="btn btn-success text-dark launch-btn active-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      false
+    </button>
+  </div>
+</SuccessLaing>
+`;

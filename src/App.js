@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import LaunchFilter from "./LaunchFilter/index.jsx";
-import LaunchCard from './LaunchCards/index.jsx'
+import LaunchFilter from "./LaunchFilter/LaunchFilter.jsx";
+import LaunchCard from './LaunchCards/LaunchCards.jsx'
 import LazyLoad from 'react-lazyload';
 import {allData} from './api.js'
 import {successLaunchFilter, successLaunchLand, allFilters} from "./api.js"
@@ -27,45 +27,48 @@ function App() {
   const handleFilters = (event, type) => {
     let value = event.target.innerText;
     let data = value === "True" ? true : false;
-    if (type === "Launch Success" && landSuccess === null && launchYear === 0) {
+    if (type === "Launch Success") {
       setLaunchSuccess(data);
+      if(landSuccess === null && launchYear === 0){
       successLaunchFilter(data)
         .then((res) => res.json())
         .then(
           (result) => {
-            console.log("checking data", result);
             setCards(result);
           },
           (error) => {
             console.error(error);
           }
         );
-    } else if(type === "Land Success" && launchSuccess !== null){
+    }
+    } else if(type === "Land Success"){
       setLandSuccess(data)
+      if(launchSuccess !== null){
       successLaunchLand(launchSuccess, data)
       .then((res) => res.json())
         .then(
           (result) => {
-            console.log("checking data", result);
             setCards(result);
           },
           (error) => {
             console.error(error);
           }
         );
-    }else if(type === "Launch Years" && launchSuccess && landSuccess !== null){
+      }
+    }else if(type === "Launch Years"){
       setLaunchYear(parseInt(value))
+      if(launchSuccess && landSuccess !== null){
       allFilters(launchSuccess, landSuccess, launchYear )
       .then((res) => res.json())
         .then(
           (result) => {
-            console.log("checking data", result);
             setCards(result);
           },
           (error) => {
             console.error(error);
           }
         );
+      }
     }
   };
 
