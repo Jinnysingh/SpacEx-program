@@ -6,6 +6,7 @@ import {successLaunchFilter, successLaunchLand, allFilters} from "./api.js"
 
 test("testing the App component", ()=>{
     const wrapper = shallow(<App />)
+    expect(wrapper.instance().state.loader).toBe(true);
     expect(toJSON(wrapper)).toMatchSnapshot();
 })
 
