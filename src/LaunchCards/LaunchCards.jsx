@@ -6,7 +6,7 @@ function LaunchCard(props) {
     <div className="row">
       {props.cardDetails.map((details) => (
         <div className="col-md-3 mt-20">
-          <div className="card launch-card">
+          <div className="card launch-card tiles">
             <LazyLoad height={200}>
             <div className="card-header">
                 <img className="launch-img" src={details.links.mission_patch_small} alt="launch-img"></img>

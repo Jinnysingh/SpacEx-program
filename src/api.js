@@ -8,7 +8,7 @@ export const allData = fetch("https://api.spacexdata.com/v3/launches?limit=100")
     console.error("error in allData api calling", err)
 })
 
-export const successLaunchFilter = (value) => fetch(`https://api.spaceXdata.com/v3/launches?limit=100&amp;launch_success=${value}`)
+export const successLaunchFilter = (value, type) => fetch(`https://api.spaceXdata.com/v3/launches?limit=100&amp;${type}=${value}`)
 .then((data)=>{
     return data
 })

@@ -8,9 +8,6 @@ import "./App.css";
 
 function App() {
   const [allCard, setCards] = useState([]);
-  const [launchSuccess, setLaunchSuccess] = useState(null);
-  const [landSuccess, setLandSuccess] = useState(null);
-  const [launchYear, setLaunchYear] = useState(0);
   const [loading, setLoader] = useState(true);
 
   useEffect(() => {
@@ -27,55 +24,40 @@ function App() {
       );
   }, []);
 
+  const changeUrl=(link)=>{
+    let history = window.history
+    history.pushState({}, "", link)
+  }
+
   const handleFilters = (event, type) => {
+    let cards
     let value = event.target.innerText;
-    let data = value === "True" ? true : false;
-    if (type === "Launch Success") {
-      setLaunchSuccess(data);
-      if (landSuccess === null && launchYear === 0) {
-        successLaunchFilter(data)
+    let data = value === "True" ? true : false || type === "launch_year" && parseInt(value)
+      changeUrl(type)
+        successLaunchFilter(data, type)
           .then((res) => res.json())
           .then(
             (result) => {
-              setCards(result);
+            if(type === "launch_success"){
+              cards = result.filter(items =>{
+                return items.launch_success === data
+              })
+            } else if(type === "land_success"){
+              cards = result.filter(items =>{
+                return items.land_success === data
+              })
+            } else if(type === "launch_year"){
+              cards = result.filter(items =>{
+                return parseInt(items.launch_year) === data
+              })
+            }
+              setCards(cards);
               setLoader(false)
             },
             (error) => {
               console.error(error);
             }
           );
-      }
-    } else if (type === "Land Success") {
-      setLandSuccess(data);
-      if (launchSuccess !== null) {
-        successLaunchLand(launchSuccess, data)
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              setCards(result);
-              setLoader(false)
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
-      }
-    } else if (type === "Launch Years") {
-      setLaunchYear(parseInt(value));
-      if (launchSuccess && landSuccess !== null) {
-        allFilters(launchSuccess, landSuccess, launchYear)
-          .then((res) => res.json())
-          .then(
-            (result) => {
-              setCards(result);
-              setLoader(false)
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
-      }
-    }
   };
 
   return (
