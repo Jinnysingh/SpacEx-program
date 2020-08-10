@@ -3,7 +3,7 @@ import LaunchFilter from "./LaunchFilter/LaunchFilter.jsx";
 import LaunchCard from "./LaunchCards/LaunchCards.jsx";
 import LazyLoad from "react-lazyload";
 import { allData } from "./api.js";
-import { successLaunchFilter, successLaunchLand, allFilters } from "./api.js";
+import { successLaunchFilter} from "./api.js";
 import "./App.css";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
   const handleFilters = (event, type) => {
     let cards
     let value = event.target.innerText;
-    let data = value === "True" ? true : false || type === "launch_year" && parseInt(value)
+    let data = value === "True" ? true : false || type === "launch_year" ?  parseInt(value) : type
       changeUrl(type)
         successLaunchFilter(data, type)
           .then((res) => res.json())
